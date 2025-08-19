@@ -1,0 +1,28 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Robit';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/Robit/Robit-Regular.woff2') format('woff2');
+}
+
+@theme {
+  --font-main: 'Robit', sans-serif;
+
+  --color-app-bg: #403041;
+  --color-app-dark: #38232e;
+  --color-app-darker: #23141c;
+  --color-app-main: #920328;
+  --color-app-cta: #db7e04;
+  --color-app-text: #d4c8d4;
+
+  --color-game-red: #ff7477;
+  --color-game-orange: #ffac81;
+  --color-game-yellow: #ffee93;
+  --color-game-green: #7bf1a8;
+  --color-game-blue: #a0c4ff;
+  --color-game-purple: #9381ff;
+  --color-game-pink: #ffc6ff;
+  --color-game-brown: #dba159;
+}
