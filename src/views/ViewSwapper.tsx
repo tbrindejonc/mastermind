@@ -1,4 +1,6 @@
 import {useGameState} from '../providers/GameStateProvider';
+import Config from './Config';
+import Game from './Game';
 import Home from './Home';
 
 /**
@@ -13,10 +15,10 @@ export default function ViewSwapper() {
       return <Home />;
 
     case 'CONFIG':
-      return <Home />;
+      return <Config />;
 
     case 'PLAYING':
-      return <Home />;
+      return <Game />;
 
     default:
       return <Home />;
