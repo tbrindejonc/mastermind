@@ -1,7 +1,9 @@
+import Home from './views/home';
+
 function App() {
   return (
     <main className='font-main'>
-      <h1 className='text-4xl'>Mastermind</h1>
+      <Home />
     </main>
   );
 }
