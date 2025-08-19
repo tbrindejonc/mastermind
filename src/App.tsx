@@ -1,9 +1,12 @@
+import GameStateProvider from './providers/GameStateProvider';
 import Home from './views/Home';
 
 function App() {
   return (
     <main className='font-main'>
-      <Home />
+      <GameStateProvider>
+        <Home />
+      </GameStateProvider>
     </main>
   );
 }
