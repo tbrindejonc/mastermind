@@ -16,7 +16,7 @@ const GCContext = createContext<GameConfigContext | undefined>(undefined);
 export default function GameConfProvider({children}: Props) {
   const [gameConfig, setGameConfig] = useState<GameConfig>({
     colorNumber: 4,
-    answerIndicator: 'PARTIAL',
+    answerIndicator: 'FULL',
     maxAttempts: 'INFINITE',
   });
 
