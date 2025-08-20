@@ -1,3 +1,4 @@
+import Button from '../components/Button';
 import {useGameConfig} from '../providers/GameConfProvider';
 import {useGameState} from '../providers/GameStateProvider';
 import type {ColorNumber} from '../types/app_types';
@@ -15,6 +16,11 @@ export default function Config() {
   // go to home page
   const goBack = () => {
     swapState('HOME');
+  };
+
+  // start the game with current game configuration
+  const startGame = () => {
+    swapState('PLAYING');
   };
 
   return (
@@ -87,6 +93,7 @@ export default function Config() {
             </button>
           </div>
         </div>
+        <Button text='Lancer' onClick={startGame} />
       </section>
     </section>
   );
