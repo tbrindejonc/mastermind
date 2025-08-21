@@ -1,3 +1,4 @@
+import ColorSelector from '../components/ColorSelector';
 import Help from '../components/Help';
 import {useGameConfig} from '../providers/GameConfProvider';
 import {useGameState} from '../providers/GameStateProvider';
@@ -19,6 +20,7 @@ export default function Game() {
       >
         MASTERMIND
       </h1>
+      <ColorSelector />
       <Help answerIndicator={gameConfig.answerIndicator} />
     </section>
   );
