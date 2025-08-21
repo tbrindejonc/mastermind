@@ -87,3 +87,6 @@ export const answerStatusToBackground: Record<AnswerStatus, string> = {
   INCORRECT: 'bg-app-cta',
   PARTIAL: 'bg-app-dark',
 };
+
+// different sizes for circle component
+export type CircleSize = 'SMALL' | 'LARGE';
