@@ -43,28 +43,25 @@ export type GameColor = 'RED' | 'ORANGE' | 'YELLOW' | 'GREEN' | 'BLUE' | 'PURPLE
 // possible statuses for a color in an answer
 export type AnswerStatus = 'CORRECT' | 'INCORRECT' | 'PARTIAL';
 
+// tuple for the row and answer row
+export type Tuple<T, N extends number, R extends unknown[] = []> = R['length'] extends N ? R : Tuple<T, N, [...R, T]>;
+
 // possible row lengths
-export type Row =
-  | [GameColor, GameColor, GameColor, GameColor]
-  | [GameColor, GameColor, GameColor, GameColor, GameColor]
-  | [GameColor, GameColor, GameColor, GameColor, GameColor, GameColor];
+export type Row<N extends ColorNumber = ColorNumber> = Tuple<GameColor, N>;
 
 // possible answer row lengths
-export type AnswerRow =
-  | [AnswerStatus, AnswerStatus, AnswerStatus, AnswerStatus]
-  | [AnswerStatus, AnswerStatus, AnswerStatus, AnswerStatus, AnswerStatus]
-  | [AnswerStatus, AnswerStatus, AnswerStatus, AnswerStatus, AnswerStatus, AnswerStatus];
+export type AnswerRow<N extends ColorNumber = ColorNumber> = Tuple<AnswerStatus, N>;
 
 // game guess with associated answer
 export type Guess<T extends ColorNumber> = {
-  guess: Row[T];
-  answer: AnswerRow[T];
+  guess: Row<T>;
+  answer: AnswerRow<T>;
 };
 
 // current game data
 export type Game<T extends ColorNumber> = {
-  toGuess: Row[T];
-  currentGuess: Row[T];
+  toGuess: Row<T>;
+  currentGuess: Row<T>;
   ancientGuesses: Guess<T>[];
 };
 
