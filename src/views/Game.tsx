@@ -1,7 +1,10 @@
+import Help from '../components/Help';
+import {useGameConfig} from '../providers/GameConfProvider';
 import {useGameState} from '../providers/GameStateProvider';
 
 export default function Game() {
   const {swapState} = useGameState();
+  const {gameConfig} = useGameConfig();
 
   // go to home page
   const goBack = () => {
@@ -16,6 +19,7 @@ export default function Game() {
       >
         MASTERMIND
       </h1>
+      <Help answerIndicator={gameConfig.answerIndicator} />
     </section>
   );
 }
