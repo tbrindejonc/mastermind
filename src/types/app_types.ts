@@ -1,6 +1,6 @@
 // circle to display in home view
 export type HomeCircle = {
-  color: string;
+  color: GameColor;
   position: string;
 };
 

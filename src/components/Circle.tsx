@@ -1,5 +1,7 @@
+import {gameColorToBackground, type GameColor} from '../types/app_types';
+
 type Props = {
-  color: string;
+  color: GameColor;
   absolutePosition?: boolean;
   position?: string;
 };
@@ -7,7 +9,7 @@ type Props = {
 export default function Circle({color, absolutePosition, position}: Props) {
   return (
     <div
-      className={`${color} shadow-app-darker size-[4vw] rounded-full shadow-xl/60 ${absolutePosition ? `absolute ${position}` : ''}`}
+      className={`${gameColorToBackground[color]} shadow-app-darker size-[4vw] rounded-full shadow-xl/60 ${absolutePosition ? `absolute ${position}` : ''}`}
     ></div>
   );
 }
