@@ -90,3 +90,9 @@ export const answerStatusToBackground: Record<AnswerStatus, string> = {
 
 // different sizes for circle component
 export type CircleSize = 'SMALL' | 'LARGE';
+
+// context for current color
+export type CurrentColorContext = {
+  currentColor: GameColor;
+  changeCurrentColor: (color: GameColor) => void;
+};
