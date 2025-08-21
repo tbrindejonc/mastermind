@@ -84,8 +84,8 @@ export const gameColorToBackground: Record<GameColor, string> = {
 // map answer statuses to tailwind background colors
 export const answerStatusToBackground: Record<AnswerStatus, string> = {
   CORRECT: 'bg-app-main',
-  INCORRECT: 'bg-app-cta',
-  PARTIAL: 'bg-app-dark',
+  INCORRECT: 'bg-app-dark',
+  PARTIAL: 'bg-app-cta',
 };
 
 // different sizes for circle component
