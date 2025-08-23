@@ -17,7 +17,7 @@ type Props = {
  * @param answerIndicator {AnswerIndicator} - the type of answer indicator for the help
  */
 export default function GameInterface({answerIndicator, setGame}: Props) {
-  const {currentGuessRow, checkCanGuess, resetCurrentGuess} = useCurrentGuessRow();
+  const {currentGuessRow, resetIndex, checkCanGuess, resetCurrentGuess} = useCurrentGuessRow();
 
   /**
    * Handle the guess submission
@@ -34,6 +34,8 @@ export default function GameInterface({answerIndicator, setGame}: Props) {
 
     // reset the current guess
     resetCurrentGuess();
+    // reset the current circle index
+    resetIndex();
   };
 
   return (
