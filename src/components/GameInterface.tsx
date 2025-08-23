@@ -66,7 +66,7 @@ export default function GameInterface({answerIndicator, setGame, answer, maxAtte
   return (
     <div className='flex flex-col items-center space-y-6'>
       <ColorSelector />
-      <div className={`${gameState === 'LOST' ? 'hidden' : 'block'}`}>
+      <div className={`${gameState === 'LOST' || gameState === 'END' ? 'hidden' : 'block'}`}>
         <Button onClick={handleGuess} text='Valider' />
       </div>
       <Help answerIndicator={answerIndicator} />
