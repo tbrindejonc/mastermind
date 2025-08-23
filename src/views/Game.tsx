@@ -68,6 +68,7 @@ export default function Game() {
               </div>
             </div>
             <div className='h-[55vh] space-y-6 overflow-auto pt-6'>
+              <h3 className='text-app-text text-2xl'>Anciennes réponses</h3>
               {game.ancientGuesses
                 .slice()
                 .reverse()
