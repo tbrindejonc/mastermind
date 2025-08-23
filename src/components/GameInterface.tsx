@@ -43,7 +43,7 @@ export default function GameInterface({answerIndicator, setGame, answer, maxAtte
     // register the guessed row
     setGame((prevGame: Game<ColorNumber>) => ({
       ...prevGame,
-      ancientGuesses: [...prevGame.ancientGuesses, createGuess<ColorNumber>(currentGuessRow, answer)],
+      ancientGuesses: [...prevGame.ancientGuesses, createGuess<ColorNumber>(currentGuessRow, answer, answerIndicator)],
     }));
 
     // increase guesses quantity both locally and in context
