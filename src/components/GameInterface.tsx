@@ -5,6 +5,8 @@ import Button from './Button';
 import ColorSelector from './ColorSelector';
 import Help from './Help';
 import {createGuess} from '../functions/create_guess';
+import {useGameState} from '../providers/GameStateProvider';
+import {checkAnswer} from '../functions/check_answer';
 
 type Props = {
   answerIndicator: AnswerIndicator;
@@ -19,6 +21,7 @@ type Props = {
  */
 export default function GameInterface({answerIndicator, setGame, answer}: Props) {
   const {currentGuessRow, resetIndex, checkCanGuess, resetCurrentGuess} = useCurrentGuessRow();
+  const {swapState} = useGameState();
 
   /**
    * Handle the guess submission
@@ -26,6 +29,12 @@ export default function GameInterface({answerIndicator, setGame, answer}: Props)
   const handleGuess = () => {
     // if the answer row isnt fully filled
     if (!checkCanGuess()) return;
+
+    // If the guess is correct, swap the game state
+    if (checkAnswer(currentGuessRow, answer)) {
+      swapState('END');
+      return;
+    }
 
     // register the guessed row
     setGame((prevGame: Game<ColorNumber>) => ({

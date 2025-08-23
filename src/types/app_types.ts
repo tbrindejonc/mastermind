@@ -5,7 +5,7 @@ export type HomeCircle = {
 };
 
 // possible game states
-export type GameState = 'HOME' | 'CONFIG' | 'PLAYING';
+export type GameState = 'HOME' | 'CONFIG' | 'PLAYING' | 'END';
 
 // context for game state
 export type GameStateContext = {

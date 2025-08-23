@@ -9,7 +9,7 @@ import CurrentGuessRowProvider from '../providers/CurrentGuessRowProvider';
 import GameInterface from '../components/GameInterface';
 
 export default function Game() {
-  const {swapState} = useGameState();
+  const {swapState, gameState} = useGameState();
   const {gameConfig} = useGameConfig();
 
   // get the number of colors to guess in the game
@@ -40,7 +40,7 @@ export default function Game() {
           <div className='flex h-full w-4/5 flex-col space-y-6 ps-[10vw]'>
             <div className='text-app-text space-y-[5vh] text-xl'>
               <div className='flex flex-row items-center space-x-[10vw]'>
-                <Row row={answerCache} size='LARGE' />
+                <Row row={gameState === 'END' ? game.toGuess : answerCache} size='LARGE' />
                 <h3>Couleurs à deviner</h3>
               </div>
               <div className='flex flex-row items-center space-x-[10vw]'>
