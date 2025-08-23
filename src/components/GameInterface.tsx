@@ -1,17 +1,20 @@
 import type {Dispatch, SetStateAction} from 'react';
 import {useCurrentGuessRow} from '../providers/CurrentGuessRowProvider';
-import type {AnswerIndicator, ColorNumber, Game, GameRow} from '../types/app_types';
+import type {AnswerIndicator, ColorNumber, Game, GameRow, GameState, MaxAttempts} from '../types/app_types';
 import Button from './Button';
 import ColorSelector from './ColorSelector';
 import Help from './Help';
 import {createGuess} from '../functions/create_guess';
 import {useGameState} from '../providers/GameStateProvider';
 import {checkAnswer} from '../functions/check_answer';
+import {useCurrentGuessesQuantity} from '../providers/CurrentGuessesQuantityProvider';
 
 type Props = {
   answerIndicator: AnswerIndicator;
   setGame: Dispatch<SetStateAction<Game<ColorNumber>>>;
   answer: GameRow<ColorNumber>;
+  maxAttempts: MaxAttempts;
+  gameState: GameState;
 };
 
 /**
@@ -19,9 +22,10 @@ type Props = {
  *
  * @param answerIndicator {AnswerIndicator} - the type of answer indicator for the help
  */
-export default function GameInterface({answerIndicator, setGame, answer}: Props) {
+export default function GameInterface({answerIndicator, setGame, answer, maxAttempts, gameState}: Props) {
   const {currentGuessRow, resetIndex, checkCanGuess, resetCurrentGuess} = useCurrentGuessRow();
   const {swapState} = useGameState();
+  const {currentGuessesQuantity, incrementGuesses, resetGuesses} = useCurrentGuessesQuantity();
 
   /**
    * Handle the guess submission
@@ -42,6 +46,17 @@ export default function GameInterface({answerIndicator, setGame, answer}: Props)
       ancientGuesses: [...prevGame.ancientGuesses, createGuess<ColorNumber>(currentGuessRow, answer)],
     }));
 
+    // increase guesses quantity both locally and in context
+    const newGuessesQuantity: number = currentGuessesQuantity + 1;
+    incrementGuesses();
+
+    // end the game if the number of guesses reaches 10 and the configuration specified max 10 tries
+    if (newGuessesQuantity >= 10 && maxAttempts === 'TEN') {
+      swapState('LOST');
+      resetGuesses();
+      return;
+    }
+
     // reset the current guess
     resetCurrentGuess();
     // reset the current circle index
@@ -51,7 +66,9 @@ export default function GameInterface({answerIndicator, setGame, answer}: Props)
   return (
     <div className='flex flex-col items-center space-y-6'>
       <ColorSelector />
-      <Button onClick={handleGuess} text='Valider' />
+      <div className={`${gameState === 'LOST' ? 'hidden' : 'block'}`}>
+        <Button onClick={handleGuess} text='Valider' />
+      </div>
       <Help answerIndicator={answerIndicator} />
     </div>
   );

@@ -41,16 +41,25 @@ export default function Game() {
         MASTERMIND
       </h1>
       <h1 className={`text-app-text text-2xl font-bold ${gameState === 'END' ? 'block' : 'hidden'}`}>Félicitation !</h1>
-      <div className={`absolute top-9 right-[15vw] ${gameState === 'END' ? 'block' : 'hidden'}`}>
+      <h1 className={`text-app-text text-2xl font-bold ${gameState === 'LOST' ? 'block' : 'hidden'}`}>Perdu !</h1>
+      <div
+        className={`absolute top-9 right-[15vw] ${gameState === 'END' || gameState === 'LOST' ? 'block' : 'hidden'}`}
+      >
         <Button text='Rejouer' onClick={playAgain} />
       </div>
       <div className='flex w-full flex-row items-center space-x-6 px-[5vw]'>
         <CurrentGuessRowProvider circleNumber={colorNumber}>
-          <GameInterface answerIndicator={gameConfig.answerIndicator} setGame={setGame} answer={game.toGuess} />
+          <GameInterface
+            answerIndicator={gameConfig.answerIndicator}
+            setGame={setGame}
+            answer={game.toGuess}
+            maxAttempts={gameConfig.maxAttempts}
+            gameState={gameState}
+          />
           <div className='flex h-full w-4/5 flex-col space-y-6 ps-[10vw]'>
             <div className='text-app-text space-y-[5vh] text-xl'>
               <div className='flex flex-row items-center space-x-[10vw]'>
-                <Row row={gameState === 'END' ? game.toGuess : answerCache} size='LARGE' />
+                <Row row={gameState === 'END' || gameState === 'LOST' ? game.toGuess : answerCache} size='LARGE' />
                 <h3>Couleurs à deviner</h3>
               </div>
               <div className='flex flex-row items-center space-x-[10vw]'>

@@ -19,6 +19,7 @@ export default function ViewSwapper() {
 
     case 'PLAYING':
     case 'END':
+    case 'LOST':
       return <Game />;
 
     default:
