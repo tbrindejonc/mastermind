@@ -6,6 +6,7 @@ import {useGameState} from '../providers/GameStateProvider';
 import type {ColorNumber, Game} from '../types/app_types';
 import {initGame} from '../functions/init_game';
 import Button from '../components/Button';
+import Row from '../components/Row';
 
 export default function Game() {
   const {swapState} = useGameState();
@@ -15,7 +16,7 @@ export default function Game() {
   const colorNumber = gameConfig.colorNumber;
 
   // initialize blank game
-  const [_game, _setGame] = useState<Game<ColorNumber>>(() => initGame(colorNumber));
+  const [game, _setGame] = useState<Game<ColorNumber>>(() => initGame(colorNumber));
 
   // go to home page
   const goBack = () => {
@@ -36,8 +37,17 @@ export default function Game() {
           <Button onClick={() => {}} text='Valider' />
           <Help answerIndicator={gameConfig.answerIndicator} />
         </div>
-        <div>
-          <div></div>
+        <div className='flex h-full w-4/5 flex-col space-y-6 ps-[10vw]'>
+          <div className='text-app-text space-y-[5vh] text-xl'>
+            <div className='flex flex-row items-center space-x-[10vw]'>
+              <Row row={game.toGuess} size='LARGE' />
+              <h3>Couleurs à deviner</h3>
+            </div>
+            <div className='flex flex-row items-center space-x-[10vw]'>
+              <Row row={game.currentGuess} size='LARGE' />
+              <h3>Ma proposition</h3>
+            </div>
+          </div>
           <div></div>
         </div>
       </div>
