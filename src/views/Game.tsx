@@ -3,7 +3,7 @@ import ColorSelector from '../components/ColorSelector';
 import Help from '../components/Help';
 import {useGameConfig} from '../providers/GameConfProvider';
 import {useGameState} from '../providers/GameStateProvider';
-import type {ColorNumber, Game} from '../types/app_types';
+import type {ColorNumber, Game, GameRow} from '../types/app_types';
 import {initGame} from '../functions/init_game';
 import Button from '../components/Button';
 import Row from '../components/Row';
@@ -14,6 +14,9 @@ export default function Game() {
 
   // get the number of colors to guess in the game
   const colorNumber = gameConfig.colorNumber;
+
+  // create array of circles to hide the answer
+  const answerCache: GameRow<ColorNumber> = Array(colorNumber).fill('INCORRECT') as GameRow<ColorNumber>;
 
   // initialize blank game
   const [game, _setGame] = useState<Game<ColorNumber>>(() => initGame(colorNumber));
@@ -40,7 +43,7 @@ export default function Game() {
         <div className='flex h-full w-4/5 flex-col space-y-6 ps-[10vw]'>
           <div className='text-app-text space-y-[5vh] text-xl'>
             <div className='flex flex-row items-center space-x-[10vw]'>
-              <Row row={game.toGuess} size='LARGE' />
+              <Row row={answerCache} size='LARGE' />
               <h3>Couleurs à deviner</h3>
             </div>
             <div className='flex flex-row items-center space-x-[10vw]'>
