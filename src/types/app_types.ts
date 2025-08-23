@@ -93,3 +93,11 @@ export type CurrentColorContext = {
   currentColor: GameColor;
   changeCurrentColor: (color: GameColor) => void;
 };
+
+// context for current guess row
+export type CurrentGuessRowContext = {
+  currentGuessRow: GameColor[];
+  checkCanGuess: () => boolean;
+  resetCurrentGuess: () => void;
+  changeCircleColor: (index: number, color: GameColor) => void;
+};
