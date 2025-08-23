@@ -36,7 +36,7 @@ export default function Game() {
       </h1>
       <div className='flex w-full flex-row items-center space-x-6 px-[5vw]'>
         <CurrentGuessRowProvider circleNumber={colorNumber}>
-          <GameInterface answerIndicator={gameConfig.answerIndicator} setGame={setGame} />
+          <GameInterface answerIndicator={gameConfig.answerIndicator} setGame={setGame} answer={game.toGuess} />
           <div className='flex h-full w-4/5 flex-col space-y-6 ps-[10vw]'>
             <div className='text-app-text space-y-[5vh] text-xl'>
               <div className='flex flex-row items-center space-x-[10vw]'>

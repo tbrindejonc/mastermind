@@ -5,9 +5,21 @@ import type {AnswerRow, ColorNumber, GameColor, GameRow, Guess} from '../types/a
  *
  * @param colorNumber {ColorNumber} - The number of colors to use in the guess
  */
-export const createGuess = <N extends ColorNumber>(currentGuessRow: GameColor[]): Guess<N> => {
+export const createGuess = <N extends ColorNumber>(currentGuessRow: GameColor[], answer: GameRow<N>): Guess<N> => {
+  // convert answer to check for correctness
+  const realAnswer = answer as GameColor[];
+
+  // for each color check if correctly placed
+  const guessResult = currentGuessRow.map((color, index) => {
+    if (color === realAnswer[index]) {
+      return 'CORRECT';
+    }
+    return 'INCORRECT';
+  });
+
+  // return the guess
   return {
     guess: currentGuessRow as GameRow<N>,
-    answer: currentGuessRow.map(() => 'INCORRECT') as AnswerRow<N>,
+    answer: guessResult as AnswerRow<N>,
   };
 };

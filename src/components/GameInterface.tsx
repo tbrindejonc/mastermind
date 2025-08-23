@@ -1,6 +1,6 @@
 import type {Dispatch, SetStateAction} from 'react';
 import {useCurrentGuessRow} from '../providers/CurrentGuessRowProvider';
-import type {AnswerIndicator, ColorNumber, Game} from '../types/app_types';
+import type {AnswerIndicator, ColorNumber, Game, GameRow} from '../types/app_types';
 import Button from './Button';
 import ColorSelector from './ColorSelector';
 import Help from './Help';
@@ -9,6 +9,7 @@ import {createGuess} from '../functions/create_guess';
 type Props = {
   answerIndicator: AnswerIndicator;
   setGame: Dispatch<SetStateAction<Game<ColorNumber>>>;
+  answer: GameRow<ColorNumber>;
 };
 
 /**
@@ -16,7 +17,7 @@ type Props = {
  *
  * @param answerIndicator {AnswerIndicator} - the type of answer indicator for the help
  */
-export default function GameInterface({answerIndicator, setGame}: Props) {
+export default function GameInterface({answerIndicator, setGame, answer}: Props) {
   const {currentGuessRow, resetIndex, checkCanGuess, resetCurrentGuess} = useCurrentGuessRow();
 
   /**
@@ -29,7 +30,7 @@ export default function GameInterface({answerIndicator, setGame}: Props) {
     // register the guessed row
     setGame((prevGame: Game<ColorNumber>) => ({
       ...prevGame,
-      ancientGuesses: [...prevGame.ancientGuesses, createGuess<ColorNumber>(currentGuessRow)],
+      ancientGuesses: [...prevGame.ancientGuesses, createGuess<ColorNumber>(currentGuessRow, answer)],
     }));
 
     // reset the current guess
