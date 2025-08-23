@@ -105,3 +105,10 @@ export type CurrentGuessRowContext = {
   resetCurrentGuess: () => void;
   changeCircleColor: (index: number, color: GameColor) => void;
 };
+
+// context for current guesses quantity
+export type CurrentGuessesQuantityContext = {
+  currentGuessesQuantity: number;
+  incrementGuesses: () => void;
+  resetGuesses: () => void;
+};

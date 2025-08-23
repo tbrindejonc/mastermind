@@ -1,4 +1,5 @@
 import CurrentColorProvider from './providers/CurrentColorProvider';
+import CurrentGuessesQuantityProvider from './providers/CurrentGuessesQuantityProvider';
 import GameConfProvider from './providers/GameConfProvider';
 import GameStateProvider from './providers/GameStateProvider';
 import ViewSwapper from './views/ViewSwapper';
@@ -9,7 +10,9 @@ function App() {
       <GameStateProvider>
         <GameConfProvider>
           <CurrentColorProvider>
-            <ViewSwapper />
+            <CurrentGuessesQuantityProvider>
+              <ViewSwapper />
+            </CurrentGuessesQuantityProvider>
           </CurrentColorProvider>
         </GameConfProvider>
       </GameStateProvider>
