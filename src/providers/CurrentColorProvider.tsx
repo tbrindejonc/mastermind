@@ -23,6 +23,11 @@ export default function CurrentColorProvider({children}: Props) {
    */
   const changeCurrentColor = (color: GameColor) => {
     setCurrentColor(color);
+
+    // reset the current color
+    setTimeout(() => {
+      setCurrentColor('WHITE');
+    }, 200);
   };
 
   return <CCContext.Provider value={{currentColor, changeCurrentColor}}>{children}</CCContext.Provider>;

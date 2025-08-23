@@ -21,13 +21,16 @@ export default function GuessRow({circleNumber}: Props) {
 
   // when current color changes
   useEffect(() => {
-    // change the color of current circle
-    setCircles((prev: GameColor[]) =>
-      prev.map((color: GameColor, index: number) => (index === current ? currentColor : color)),
-    );
+    // if the color is different from white
+    if (currentColor !== 'WHITE') {
+      // change the color of current circle
+      setCircles((prev: GameColor[]) =>
+        prev.map((color: GameColor, index: number) => (index === current ? currentColor : color)),
+      );
 
-    // move to next circle
-    setCurrent((prev: number) => (prev + 1) % circleNumber);
+      // move to next circle
+      setCurrent((prev: number) => (prev + 1) % circleNumber);
+    }
   }, [currentColor]);
 
   return (
