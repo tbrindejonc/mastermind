@@ -44,7 +44,7 @@ export default function Game() {
                 <h3>Couleurs à deviner</h3>
               </div>
               <div className='flex flex-row items-center space-x-[10vw]'>
-                <GuessRow circleNumber={colorNumber} />
+                <GuessRow />
                 <h3>Ma proposition</h3>
               </div>
             </div>

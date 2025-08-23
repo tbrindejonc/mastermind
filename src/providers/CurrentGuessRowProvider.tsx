@@ -16,6 +16,21 @@ const CGRContext = createContext<CurrentGuessRowContext | undefined>(undefined);
  */
 export default function CurrentGuessRowProvider({children, circleNumber}: Props) {
   const [currentGuessRow, setCurrentGuessRow] = useState<GameColor[]>(Array(circleNumber).fill('WHITE'));
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+
+  /**
+   * Move to the next circle in the current guess row
+   */
+  const nextIndex = () => {
+    setCurrentIndex((prev: number) => (prev + 1) % circleNumber);
+  };
+
+  /**
+   * Reset the current index to the first circle
+   */
+  const resetIndex = () => {
+    setCurrentIndex(0);
+  };
 
   /**
    * Check if the current guess row is complete before guessing
@@ -44,7 +59,18 @@ export default function CurrentGuessRowProvider({children, circleNumber}: Props)
   };
 
   return (
-    <CGRContext.Provider value={{currentGuessRow, checkCanGuess, resetCurrentGuess, changeCircleColor}}>
+    <CGRContext.Provider
+      value={{
+        currentGuessRow,
+        currentIndex,
+        nextIndex,
+        resetIndex,
+        setCurrentIndex,
+        checkCanGuess,
+        resetCurrentGuess,
+        changeCircleColor,
+      }}
+    >
       {children}
     </CGRContext.Provider>
   );
