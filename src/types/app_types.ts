@@ -112,3 +112,6 @@ export type CurrentGuessesQuantityContext = {
   incrementGuesses: () => void;
   resetGuesses: () => void;
 };
+
+// mapping of game colors to their respective numbers
+export type GameColorNumber = Record<GameColor, number>;
