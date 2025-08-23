@@ -7,6 +7,7 @@ import type {ColorNumber, Game, GameRow} from '../types/app_types';
 import {initGame} from '../functions/init_game';
 import Button from '../components/Button';
 import Row from '../components/Row';
+import GuessRow from '../components/GuessRow';
 
 export default function Game() {
   const {swapState} = useGameState();
@@ -19,7 +20,7 @@ export default function Game() {
   const answerCache: GameRow<ColorNumber> = Array(colorNumber).fill('INCORRECT') as GameRow<ColorNumber>;
 
   // initialize blank game
-  const [game, _setGame] = useState<Game<ColorNumber>>(() => initGame(colorNumber));
+  const [, _setGame] = useState<Game<ColorNumber>>(() => initGame(colorNumber));
 
   // go to home page
   const goBack = () => {
@@ -47,7 +48,7 @@ export default function Game() {
               <h3>Couleurs à deviner</h3>
             </div>
             <div className='flex flex-row items-center space-x-[10vw]'>
-              <Row row={game.currentGuess} size='LARGE' />
+              <GuessRow circleNumber={colorNumber} />
               <h3>Ma proposition</h3>
             </div>
           </div>
