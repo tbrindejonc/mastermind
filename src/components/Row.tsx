@@ -14,7 +14,7 @@ type Props = {
  */
 export default function Row({row, size}: Props) {
   return (
-    <div className='flex flex-row items-center space-x-[3vw]'>
+    <div className={`flex flex-row items-center ${size === 'LARGE' ? 'space-x-[3vw]' : 'space-x-[1vw]'}`}>
       {row.map((color: GameColor | AnswerStatus, index: number) => (
         <Circle key={index} color={color} size={size} />
       ))}
