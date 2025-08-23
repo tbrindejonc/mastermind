@@ -7,6 +7,7 @@ import Row from '../components/Row';
 import GuessRow from '../components/GuessRow';
 import CurrentGuessRowProvider from '../providers/CurrentGuessRowProvider';
 import GameInterface from '../components/GameInterface';
+import Button from '../components/Button';
 
 export default function Game() {
   const {swapState, gameState} = useGameState();
@@ -26,14 +27,23 @@ export default function Game() {
     swapState('HOME');
   };
 
+  // go to config page
+  const playAgain = () => {
+    swapState('CONFIG');
+  };
+
   return (
-    <section className='bg-app-bg flex h-screen w-full flex-col items-center justify-center space-y-[6vh] overflow-hidden'>
+    <section className='bg-app-bg flex h-screen w-full flex-col items-center justify-center space-y-[2vh] overflow-hidden'>
       <h1
         onClick={goBack}
         className='text-app-cta text-shadow-app-main text-7xl font-bold text-shadow-md hover:cursor-pointer'
       >
         MASTERMIND
       </h1>
+      <h1 className={`text-app-text text-2xl font-bold ${gameState === 'END' ? 'block' : 'hidden'}`}>Félicitation !</h1>
+      <div className={`absolute top-9 right-[15vw] ${gameState === 'END' ? 'block' : 'hidden'}`}>
+        <Button text='Rejouer' onClick={playAgain} />
+      </div>
       <div className='flex w-full flex-row items-center space-x-6 px-[5vw]'>
         <CurrentGuessRowProvider circleNumber={colorNumber}>
           <GameInterface answerIndicator={gameConfig.answerIndicator} setGame={setGame} answer={game.toGuess} />
