@@ -1,4 +1,4 @@
-import type {ColorNumber, Game, Row} from '../types/app_types';
+import type {ColorNumber, Game, GameRow} from '../types/app_types';
 import {chooseAnswer} from './choose_answer';
 
 /**
@@ -8,8 +8,8 @@ import {chooseAnswer} from './choose_answer';
  */
 export const initGame = <N extends ColorNumber>(colorNumber: N): Game<N> => {
   return {
-    toGuess: chooseAnswer(colorNumber) as Row<N>,
-    currentGuess: Array(colorNumber).fill('WHITE') as Row<N>,
+    toGuess: chooseAnswer(colorNumber) as GameRow<N>,
+    currentGuess: Array(colorNumber).fill('WHITE') as GameRow<N>,
     ancientGuesses: [],
   };
 };

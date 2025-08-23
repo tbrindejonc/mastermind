@@ -1,11 +1,11 @@
-import type {ColorNumber, GameColor, Row} from '../types/app_types';
+import type {ColorNumber, GameColor, GameRow} from '../types/app_types';
 
 /**
  * Randomly selects colors for the answer
  *
  * @param colorNumber {ColorNumber} - The number of colors to select
  */
-export const chooseAnswer = (colorNumber: ColorNumber): Row<ColorNumber> => {
+export const chooseAnswer = (colorNumber: ColorNumber): GameRow<ColorNumber> => {
   // possible colors to pick
   const GAME_COLORS: GameColor[] = ['RED', 'ORANGE', 'YELLOW', 'GREEN', 'BLUE', 'PURPLE', 'PINK', 'BROWN'];
 
@@ -19,5 +19,5 @@ export const chooseAnswer = (colorNumber: ColorNumber): Row<ColorNumber> => {
   }
 
   // return the selected answer
-  return answer as Row<ColorNumber>;
+  return answer as GameRow<ColorNumber>;
 };

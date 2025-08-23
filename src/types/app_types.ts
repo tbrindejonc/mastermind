@@ -47,21 +47,21 @@ export type AnswerStatus = 'CORRECT' | 'INCORRECT' | 'PARTIAL';
 export type Tuple<T, N extends number, R extends unknown[] = []> = R['length'] extends N ? R : Tuple<T, N, [...R, T]>;
 
 // possible row lengths
-export type Row<N extends ColorNumber = ColorNumber> = Tuple<GameColor, N>;
+export type GameRow<N extends ColorNumber = ColorNumber> = Tuple<GameColor, N>;
 
 // possible answer row lengths
 export type AnswerRow<N extends ColorNumber = ColorNumber> = Tuple<AnswerStatus, N>;
 
 // game guess with associated answer
 export type Guess<T extends ColorNumber> = {
-  guess: Row<T>;
+  guess: GameRow<T>;
   answer: AnswerRow<T>;
 };
 
 // current game data
 export type Game<T extends ColorNumber> = {
-  toGuess: Row<T>;
-  currentGuess: Row<T>;
+  toGuess: GameRow<T>;
+  currentGuess: GameRow<T>;
   ancientGuesses: Guess<T>[];
 };
 
