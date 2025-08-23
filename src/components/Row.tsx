@@ -1,8 +1,8 @@
-import type {AnswerStatus, CircleSize, GameColor, GameRow} from '../types/app_types';
+import type {AnswerRow, AnswerStatus, CircleSize, GameColor, GameRow} from '../types/app_types';
 import Circle from './Circle';
 
 type Props = {
-  row: GameRow;
+  row: GameRow | AnswerRow;
   size: CircleSize;
 };
 

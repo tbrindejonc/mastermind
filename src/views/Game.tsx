@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {useGameConfig} from '../providers/GameConfProvider';
 import {useGameState} from '../providers/GameStateProvider';
-import type {ColorNumber, Game, GameRow} from '../types/app_types';
+import type {ColorNumber, Game, GameRow, Guess} from '../types/app_types';
 import {initGame} from '../functions/init_game';
 import Row from '../components/Row';
 import GuessRow from '../components/GuessRow';
@@ -19,7 +19,7 @@ export default function Game() {
   const answerCache: GameRow<ColorNumber> = Array(colorNumber).fill('INCORRECT') as GameRow<ColorNumber>;
 
   // initialize blank game
-  const [_game, setGame] = useState<Game<ColorNumber>>(() => initGame(colorNumber));
+  const [game, setGame] = useState<Game<ColorNumber>>(() => initGame(colorNumber));
 
   // go to home page
   const goBack = () => {
@@ -27,7 +27,7 @@ export default function Game() {
   };
 
   return (
-    <section className='bg-app-bg flex h-screen w-full flex-col items-center justify-center space-y-[6vh]'>
+    <section className='bg-app-bg flex h-screen w-full flex-col items-center justify-center space-y-[6vh] overflow-hidden'>
       <h1
         onClick={goBack}
         className='text-app-cta text-shadow-app-main text-7xl font-bold text-shadow-md hover:cursor-pointer'
@@ -48,7 +48,17 @@ export default function Game() {
                 <h3>Ma proposition</h3>
               </div>
             </div>
-            <div></div>
+            <div className='h-[55vh] space-y-6 overflow-auto pt-6'>
+              {game.ancientGuesses
+                .slice()
+                .reverse()
+                .map((guess: Guess<ColorNumber>, index: number) => (
+                  <div className='flex flex-row items-center space-x-[5vw]' key={index}>
+                    <Row row={guess.guess} size='LARGE' />
+                    <Row row={guess.answer} size='SMALL' />
+                  </div>
+                ))}
+            </div>
           </div>
         </CurrentGuessRowProvider>
       </div>
