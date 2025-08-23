@@ -4,6 +4,7 @@ import type {AnswerRow, ColorNumber, GameColor, GameRow, Guess} from '../types/a
  * Create a guess with a defined number of colors
  *
  * @param colorNumber {ColorNumber} - The number of colors to use in the guess
+ * @param answer {GameRow<ColorNumber>} - The correct answer row
  */
 export const createGuess = <N extends ColorNumber>(currentGuessRow: GameColor[], answer: GameRow<N>): Guess<N> => {
   // convert answer to check for correctness
