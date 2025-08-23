@@ -1,3 +1,5 @@
+import CurrentColorProvider from './providers/CurrentColorProvider';
+import CurrentGuessesQuantityProvider from './providers/CurrentGuessesQuantityProvider';
 import GameConfProvider from './providers/GameConfProvider';
 import GameStateProvider from './providers/GameStateProvider';
 import ViewSwapper from './views/ViewSwapper';
@@ -7,7 +9,11 @@ function App() {
     <main className='font-main'>
       <GameStateProvider>
         <GameConfProvider>
-          <ViewSwapper />
+          <CurrentColorProvider>
+            <CurrentGuessesQuantityProvider>
+              <ViewSwapper />
+            </CurrentGuessesQuantityProvider>
+          </CurrentColorProvider>
         </GameConfProvider>
       </GameStateProvider>
     </main>

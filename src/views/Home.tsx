@@ -20,7 +20,7 @@ export default function Home() {
       <Button text='Jouer' onClick={playGame} />
       <div>
         {home_circle.map((circle: HomeCircle, index: number) => (
-          <Circle key={index} color={circle.color} position={circle.position} absolutePosition />
+          <Circle key={index} size={'LARGE'} color={circle.color} position={circle.position} absolutePosition />
         ))}
       </div>
     </section>
