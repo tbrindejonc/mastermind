@@ -8,6 +8,7 @@ import {initGame} from '../functions/init_game';
 import Button from '../components/Button';
 import Row from '../components/Row';
 import GuessRow from '../components/GuessRow';
+import CurrentGuessRowProvider from '../providers/CurrentGuessRowProvider';
 
 export default function Game() {
   const {swapState} = useGameState();
@@ -48,7 +49,9 @@ export default function Game() {
               <h3>Couleurs à deviner</h3>
             </div>
             <div className='flex flex-row items-center space-x-[10vw]'>
-              <GuessRow circleNumber={colorNumber} />
+              <CurrentGuessRowProvider circleNumber={colorNumber}>
+                <GuessRow circleNumber={colorNumber} />
+              </CurrentGuessRowProvider>
               <h3>Ma proposition</h3>
             </div>
           </div>

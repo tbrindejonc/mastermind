@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import type {ColorNumber, GameColor} from '../types/app_types';
 import Circle from './Circle';
 import {useCurrentColor} from '../providers/CurrentColorProvider';
+import {useCurrentGuessRow} from '../providers/CurrentGuessRowProvider';
 
 type Props = {
   circleNumber: ColorNumber;
@@ -14,19 +15,17 @@ type Props = {
  */
 export default function GuessRow({circleNumber}: Props) {
   const [current, setCurrent] = useState<number>(0);
-  const [circles, setCircles] = useState<GameColor[]>(Array(circleNumber).fill('WHITE'));
 
   // get current color from color selector
   const {currentColor} = useCurrentColor();
+  const {currentGuessRow, changeCircleColor} = useCurrentGuessRow();
 
   // when current color changes
   useEffect(() => {
     // if the color is different from white
     if (currentColor !== 'WHITE') {
       // change the color of current circle
-      setCircles((prev: GameColor[]) =>
-        prev.map((color: GameColor, index: number) => (index === current ? currentColor : color)),
-      );
+      changeCircleColor(current, currentColor);
 
       // move to next circle
       setCurrent((prev: number) => (prev + 1) % circleNumber);
@@ -35,7 +34,7 @@ export default function GuessRow({circleNumber}: Props) {
 
   return (
     <div className='flex flex-row items-center space-x-[3vw]'>
-      {circles.map((circleColor: GameColor, index: number) => {
+      {currentGuessRow.map((circleColor: GameColor, index: number) => {
         const isCurrent = index === current;
 
         return (
