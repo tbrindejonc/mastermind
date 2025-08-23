@@ -97,6 +97,10 @@ export type CurrentColorContext = {
 // context for current guess row
 export type CurrentGuessRowContext = {
   currentGuessRow: GameColor[];
+  currentIndex: number;
+  nextIndex: () => void;
+  resetIndex: () => void;
+  setCurrentIndex: (index: number) => void;
   checkCanGuess: () => boolean;
   resetCurrentGuess: () => void;
   changeCircleColor: (index: number, color: GameColor) => void;
