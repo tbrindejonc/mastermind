@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  apache:
+    image: httpd:latest
+    container_name: mastermind-apache
+    volumes:
+      - ./dist:/usr/local/apache2/htdocs/
+    restart: always
+    ports:
+      - "59111:80"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mastermind.rule=Host(`mastermind.timeuh.fr`)"
+      - "traefik.http.routers.mastermind.entrypoints=websecure"
+      - "traefik.http.routers.mastermind.tls.certresolver=myresolver"
+    networks:
+      - traefik_web
+
+networks:
+  traefik_web:
+    external: true
+  default:
+    driver: bridge
